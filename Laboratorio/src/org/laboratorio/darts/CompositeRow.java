@@ -1,6 +1,5 @@
 package org.laboratorio.darts;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -19,8 +18,8 @@ public class CompositeRow extends JPanel {
 	private static final long serialVersionUID = 1L;
 	// public int IDriga;
 	// public JButton bottone;
-	public boolean chiuso = false;
-	private boolean morto = false;
+	public boolean pnlChiuso;
+	private boolean pnlMorto;
 	public ExtJLabel lblNumeroA;
 	public ExtJLabel lblNumeroB;
 	public ExtJLabel lblNumeroC;
@@ -61,7 +60,9 @@ public class CompositeRow extends JPanel {
 		lblNumeroC.setColoured(lblNumeroC.getColor());
 		this.add(lblNumeroC);
 
-		// creo il Bottone del Numero
+		/*
+		 * creo il Bottone del Numero
+		 */
 		final JButton btnNumero = new JButton(idriga + 1 + "");
 		btnNumero.setBounds(5, 2, 25, 15);
 		this.add(btnNumero);
@@ -72,23 +73,26 @@ public class CompositeRow extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Color rosso = new Color(255, 51, 0);
-
-				if (chiuso) {
+				if (pnlChiuso | pnlMorto) {
 					DartMain.incrementa(idpannello, idriga);
-				}
-				if (!lblNumeroA.isColored()) {
-					lblNumeroA.setColoured(rosso);
 				} else {
-					if (!lblNumeroB.isColored()) {
-						lblNumeroB.setColoured(rosso);
+					if (!lblNumeroA.isLblPreso()) {
+						lblNumeroA.setLblPreso(true);
+						pnlChiuso = false;
 					} else {
-						if (!lblNumeroC.isColored()) {
-							lblNumeroC.setColoured(rosso);
-							chiuso = true;
-							morto = DartMain.numeroMorto(idriga);
-							if (morto) {
-								DartMain.cambiaColore(idpannello, idriga);
+						if (!lblNumeroB.isLblPreso()) {
+							lblNumeroB.setLblPreso(true);
+							pnlChiuso = false;
+						} else {
+							if (!lblNumeroC.isLblPreso()) {
+								lblNumeroC.setLblPreso(true);
+								pnlChiuso = true;
+								pnlMorto = DartMain.isNumeroMorto(idriga);
+								if (pnlMorto) {
+									DartMain.cambiaColoreMorto(idpannello,
+											idriga);
+
+								}
 							}
 						}
 					}
@@ -96,7 +100,9 @@ public class CompositeRow extends JPanel {
 			}
 		});
 
-		// creo il Bottone ANNULLA Numero
+		/*
+		 * creo il Bottone ANNULLA Numero
+		 */
 		final JButton btnAnnullaNumero = new JButton(idriga + 1 + "");
 		btnAnnullaNumero.setBounds(150, 2, 25, 15);
 		this.add(btnAnnullaNumero);
@@ -107,30 +113,36 @@ public class CompositeRow extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent f) {
-				
-				morto = DartMain.numeroNonMorto(idriga);
-				if (morto) {
-					lblNumeroC.setUnColoured();
-					DartMain.riCambiaColore(idpannello, idriga);
+				pnlMorto = DartMain.isNumeroMorto(idriga);
+				System.out.println(pnlMorto);
+
+				if (pnlMorto) {
+					pnlChiuso = false;
+					pnlMorto = false;
+					DartMain.cambiaColoreChiuso(idpannello, idriga);
+					//lblNumeroC.setLblPreso(false);
+
+					//DartMain.cambiaColoreChiuso(idpannello, idriga);
+				} 
+				if (pnlChiuso){
+					pnlChiuso=false;
 				}
-
-				if (lblNumeroC.isColored()) {
-					lblNumeroC.setUnColoured();
-					chiuso = false;
-
+				if (lblNumeroC.isLblPreso() & lblNumeroB.isLblPreso() & lblNumeroA.isLblPreso()) {
+					lblNumeroC.setLblPreso(false);
+					pnlChiuso = false;
 				} else {
-					if (lblNumeroB.isColored()) {
-						lblNumeroB.setUnColoured();
-						chiuso = false;
+					if (lblNumeroB.isLblPreso() & lblNumeroA.isLblPreso()) {
+						lblNumeroB.setLblPreso(false);
+						pnlChiuso = false;
 					} else {
-						if (lblNumeroA.isColored()) {
-							lblNumeroA.setUnColoured();
-							chiuso = false;
+						if (lblNumeroA.isLblPreso()) {
+							lblNumeroA.setLblPreso(false);
+							pnlChiuso = false;
 						}
 					}
-				}
+					
+				} 
 			}
 		});
 	}
-
 }

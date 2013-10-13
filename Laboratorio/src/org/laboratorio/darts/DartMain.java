@@ -43,8 +43,8 @@ public class DartMain extends JFrame {
 			if (i != pannello) {
 				PlayerPanel otherpanel = panelArray[i];
 				CompositeRow otherrow = otherpanel.rowArray[riga];
-				morto = morto & otherrow.chiuso;
-				if (!otherrow.chiuso) {
+				morto = morto & otherrow.pnlChiuso;
+				if (!otherrow.pnlChiuso) {
 					int totale = Integer.parseInt(otherpanel.lblPunteggioPlayer
 							.getText().toString()) + riga + 1;
 					otherpanel.lblPunteggioPlayer.setText("" + totale);
@@ -61,23 +61,56 @@ public class DartMain extends JFrame {
 		}
 	}
 
-	public static void cambiaColore(int pannello, int riga) {
-
-		mortoArray[riga] = true;
-
+	public static void cambiaColoreChiuso(int pannello, int riga) {
+		// se il btnAnnullaNumero e' premuto
+		// quando un numero è morto, fa tornare tutto rosso
+		// ..ci sara' poi un ulteriore controllo al click
+		// del btnAnnullaNumero che si occupa delle labels
 		int numeroGiocatori = intestazionepanel.getSelectedVal();
-		Color blue = new Color(0, 0, 255);
+		mortoArray[riga] = false;
+
 		for (int i = 0; i < numeroGiocatori; i++) {
 			PlayerPanel otherpanel = panelArray[i];
 			CompositeRow otherrow = otherpanel.rowArray[riga];
 
-			ExtJLabel lblNumeroA = otherrow.lblNumeroA;
-			lblNumeroA.setColoured(blue);
-			ExtJLabel lblNumeroB = otherrow.lblNumeroB;
-			lblNumeroB.setColoured(blue);
-			ExtJLabel lblNumeroC = otherrow.lblNumeroC;
-			lblNumeroC.setColoured(blue);
+			//if (i != pannello) {
+				ExtJLabel lblNumeroA = otherrow.lblNumeroA;
+				ExtJLabel lblNumeroB = otherrow.lblNumeroB;
+				ExtJLabel lblNumeroC = otherrow.lblNumeroC;
 
+				if (lblNumeroA.isLblPreso()){
+					lblNumeroA.setLblPreso(true);
+
+				}
+				if (lblNumeroB.isLblPreso()){
+					lblNumeroB.setLblPreso(true);
+
+				}
+				if (lblNumeroC.isLblPreso()){
+					lblNumeroC.setLblPreso(true);
+
+				}
+				
+			//} 
+		}
+
+	}
+	
+	public static void cambiaColoreMorto(int pannello, int riga) {
+
+		mortoArray[riga] = true;
+
+		int numeroGiocatori = intestazionepanel.getSelectedVal();
+		for (int i = 0; i < numeroGiocatori; i++) {
+			PlayerPanel otherpanel = panelArray[i];
+			CompositeRow otherrow = otherpanel.rowArray[riga];
+			
+			ExtJLabel lblNumeroA = otherrow.lblNumeroA;
+			lblNumeroA.setLblMorto(true);
+			ExtJLabel lblNumeroB = otherrow.lblNumeroB;
+			lblNumeroB.setLblMorto(true);
+			ExtJLabel lblNumeroC = otherrow.lblNumeroC;
+			lblNumeroC.setLblMorto(true);
 		}
 	}
 
@@ -85,29 +118,31 @@ public class DartMain extends JFrame {
 		mortoArray[riga] = false;
 
 		int numeroGiocatori = intestazionepanel.getSelectedVal();
+		Color rosso = new Color(255, 0, 0);
+
 		for (int i = 0; i < numeroGiocatori; i++) {
 			PlayerPanel otherpanel = panelArray[i];
 			CompositeRow otherrow = otherpanel.rowArray[riga];
 
 			ExtJLabel lblNumeroA = otherrow.lblNumeroA;
-			lblNumeroA.setUnColoured();
+			lblNumeroA.setColoured(rosso);
 			ExtJLabel lblNumeroB = otherrow.lblNumeroB;
-			lblNumeroB.setUnColoured();
+			lblNumeroB.setColoured(rosso);
 			ExtJLabel lblNumeroC = otherrow.lblNumeroC;
-			lblNumeroC.setUnColoured();
+			lblNumeroC.setColoured(rosso);
 
 		}
 
 	}
 
-	public static boolean numeroMorto(int riga) {
+	public static boolean isNumeroMorto(int riga) {
 		int numeroGiocatori = intestazionepanel.getSelectedVal();
 		boolean morto = true;
 		for (int i = 0; i < numeroGiocatori; i++) {
 
 			PlayerPanel otherpanel = panelArray[i];
 			CompositeRow otherrow = otherpanel.rowArray[riga];
-			morto = morto & otherrow.chiuso;
+			morto = morto & otherrow.pnlChiuso;
 
 		}
 		return morto;
@@ -116,13 +151,13 @@ public class DartMain extends JFrame {
 	public static boolean numeroNonMorto(int riga) {
 		int numeroGiocatori = intestazionepanel.getSelectedVal();
 		boolean morto = false;
-		// for (int i = 0; i < numeroGiocatori; i++) {
-		//
-		// PlayerPanel otherpanel = panelArray[i];
-		// CompositeRow otherrow = otherpanel.rowArray[riga];
-		// morto = false;
-		//
-		// }
+		 for (int i = 0; i < numeroGiocatori; i++) {
+		
+		 PlayerPanel otherpanel = panelArray[i];
+		 CompositeRow otherrow = otherpanel.rowArray[riga];
+		 morto = false;
+		
+		 }
 		return morto;
 	}
 
