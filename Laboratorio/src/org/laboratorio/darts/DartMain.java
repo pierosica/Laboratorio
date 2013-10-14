@@ -1,6 +1,5 @@
 package org.laboratorio.darts;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,9 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 public class DartMain extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static JPanel contentPanePlayer;
@@ -38,6 +34,12 @@ public class DartMain extends JFrame {
 	public static void incrementa(int pannello, int riga) {
 		boolean morto = true;
 		int numeroGiocatori = intestazionepanel.getSelectedVal();
+		int delta = 1;
+		// System.out.println(riga);
+		if (riga == 20) {
+			delta = 5;
+			// System.out.println("qwe");
+		}
 
 		for (int i = 0; i < numeroGiocatori; i++) {
 			if (i != pannello) {
@@ -46,7 +48,7 @@ public class DartMain extends JFrame {
 				morto = morto & otherrow.pnlChiuso;
 				if (!otherrow.pnlChiuso) {
 					int totale = Integer.parseInt(otherpanel.lblPunteggioPlayer
-							.getText().toString()) + riga + 1;
+							.getText().toString()) + riga + delta;
 					otherpanel.lblPunteggioPlayer.setText("" + totale);
 				}
 
@@ -54,8 +56,9 @@ public class DartMain extends JFrame {
 		}
 		if (morto) {
 			PlayerPanel mypanel = panelArray[pannello];
+
 			int totale = Integer.parseInt(mypanel.lblPunteggioPlayer.getText()
-					.toString()) + riga + 1;
+					.toString()) + riga + delta;
 			mypanel.lblPunteggioPlayer.setText("" + totale);
 
 		}
@@ -72,30 +75,21 @@ public class DartMain extends JFrame {
 		for (int i = 0; i < numeroGiocatori; i++) {
 			PlayerPanel otherpanel = panelArray[i];
 			CompositeRow otherrow = otherpanel.rowArray[riga];
-
-			//if (i != pannello) {
-				ExtJLabel lblNumeroA = otherrow.lblNumeroA;
-				ExtJLabel lblNumeroB = otherrow.lblNumeroB;
-				ExtJLabel lblNumeroC = otherrow.lblNumeroC;
-
-				if (lblNumeroA.isLblPreso()){
-					lblNumeroA.setLblPreso(true);
-
-				}
-				if (lblNumeroB.isLblPreso()){
-					lblNumeroB.setLblPreso(true);
-
-				}
-				if (lblNumeroC.isLblPreso()){
-					lblNumeroC.setLblPreso(true);
-
-				}
-				
-			//} 
+			ExtJLabel lblNumeroA = otherrow.lblNumeroA;
+			ExtJLabel lblNumeroB = otherrow.lblNumeroB;
+			ExtJLabel lblNumeroC = otherrow.lblNumeroC;
+			if (lblNumeroA.isLblPreso()) {
+				lblNumeroA.setLblPreso(true);
+			}
+			if (lblNumeroB.isLblPreso()) {
+				lblNumeroB.setLblPreso(true);
+			}
+			if (lblNumeroC.isLblPreso()) {
+				lblNumeroC.setLblPreso(true);
+			}
 		}
-
 	}
-	
+
 	public static void cambiaColoreMorto(int pannello, int riga) {
 
 		mortoArray[riga] = true;
@@ -104,7 +98,7 @@ public class DartMain extends JFrame {
 		for (int i = 0; i < numeroGiocatori; i++) {
 			PlayerPanel otherpanel = panelArray[i];
 			CompositeRow otherrow = otherpanel.rowArray[riga];
-			
+
 			ExtJLabel lblNumeroA = otherrow.lblNumeroA;
 			lblNumeroA.setLblMorto(true);
 			ExtJLabel lblNumeroB = otherrow.lblNumeroB;
@@ -112,27 +106,6 @@ public class DartMain extends JFrame {
 			ExtJLabel lblNumeroC = otherrow.lblNumeroC;
 			lblNumeroC.setLblMorto(true);
 		}
-	}
-
-	public static void riCambiaColore(int pannello, int riga) {
-		mortoArray[riga] = false;
-
-		int numeroGiocatori = intestazionepanel.getSelectedVal();
-		Color rosso = new Color(255, 0, 0);
-
-		for (int i = 0; i < numeroGiocatori; i++) {
-			PlayerPanel otherpanel = panelArray[i];
-			CompositeRow otherrow = otherpanel.rowArray[riga];
-
-			ExtJLabel lblNumeroA = otherrow.lblNumeroA;
-			lblNumeroA.setColoured(rosso);
-			ExtJLabel lblNumeroB = otherrow.lblNumeroB;
-			lblNumeroB.setColoured(rosso);
-			ExtJLabel lblNumeroC = otherrow.lblNumeroC;
-			lblNumeroC.setColoured(rosso);
-
-		}
-
 	}
 
 	public static boolean isNumeroMorto(int riga) {
@@ -148,19 +121,45 @@ public class DartMain extends JFrame {
 		return morto;
 	}
 
-	public static boolean numeroNonMorto(int riga) {
-		int numeroGiocatori = intestazionepanel.getSelectedVal();
-		boolean morto = false;
-		 for (int i = 0; i < numeroGiocatori; i++) {
-		
-		 PlayerPanel otherpanel = panelArray[i];
-		 CompositeRow otherrow = otherpanel.rowArray[riga];
-		 morto = false;
-		
-		 }
-		return morto;
+	/*
+	 * TODO
+	 */
+	public static void isAnyWinner() {
+		int numeroRighe = 21;
+		for (int i = 0; i < numeroRighe; i++) {
+			//System.out.println(i);
+
+		}
 	}
 
+	public static boolean lblGiocatoreTutteChiuse(int pannello) {
+		boolean chiuso = true;
+		PlayerPanel panel = panelArray[pannello];
+		for (int j = 0; j < 21; j++) {
+			CompositeRow row = panel.rowArray[j];
+			chiuso = chiuso & row.pnlChiuso;
+		}
+		return chiuso;
+	}
+
+	public static void calcolaPunteggio(int pannello){
+		int numeroGiocatori = intestazionepanel.getSelectedVal();
+		int[] arrayPunteggi = new int [numeroGiocatori];
+		for (int i=0;i<numeroGiocatori;i++){
+			PlayerPanel panel = panelArray[i];
+			arrayPunteggi[i] = Integer.parseInt(panel.lblPunteggioPlayer.getText());
+		}
+		int j=0;
+		for (int i = 0;i<numeroGiocatori;i++){
+			if (arrayPunteggi[i] < arrayPunteggi[j]){
+				j = i;
+			}
+		}
+		if (j == pannello){
+			
+		}
+	}
+	
 	public static void buildIt(int giocatori) {
 		contentPanePlayer.removeAll();
 		contentPanePlayer.repaint();
@@ -175,9 +174,7 @@ public class DartMain extends JFrame {
 			pnlPlayer.setLayout(null);
 			panelArray[i] = pnlPlayer;
 			contentPanePlayer.add(pnlPlayer);
-
 		}
-
 	}
 
 	/**
@@ -199,7 +196,7 @@ public class DartMain extends JFrame {
 
 		// aggancio il panel della intestazione
 		intestazionepanel = new IntestazionePanel();
-		intestazionepanel.setBounds(182, 0, 433, 47);
+		intestazionepanel.setBounds(124, 0, 550, 47);
 		contentPane.add(intestazionepanel);
 		int numeroGiocatori = intestazionepanel.getSelectedVal();
 

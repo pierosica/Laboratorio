@@ -10,7 +10,7 @@ public class ExtJLabel extends JLabel {
 	private Color color;
 	private Color grigio = new Color(230, 230, 230);
 	private Color rosso = new Color(255, 0, 0);
-	private Color blue = new Color (0,0,255);
+	private Color blue = new Color(0, 0, 255);
 	private boolean hasColor = false;
 	private boolean lblPreso = false;
 	private boolean lblMorto = false;
@@ -64,7 +64,7 @@ public class ExtJLabel extends JLabel {
 			this.setBackground(color);
 			hasColor = lblPreso;
 		}
-		
+
 	}
 
 	/**

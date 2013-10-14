@@ -1,43 +1,33 @@
 package org.laboratorio.darts;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-
 import org.jdesktop.xswingx.PromptSupport;
-
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-@SuppressWarnings({ "serial", "unused" })
 public class PlayerPanel extends JPanel {
 
-	private JPanel contentPane;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//private JPanel contentPane;
 	public JTextField txtName;
-	private static int NumeroRighe = 21;
-	private CompositeRow riga;
 	public JLabel lblPunteggioPlayer;
 	private JButton btnMenoUno;
 	private JButton btnMenoDieci;
+	private static int NumeroRighe = 21;
+	private CompositeRow riga;
 	public int IDpannello;
-
 	public CompositeRow[] rowArray = new CompositeRow[NumeroRighe];
-
 	Border borderTxtName = new EtchedBorder(EtchedBorder.LOWERED, null, null);
 
 	/**
@@ -68,7 +58,6 @@ public class PlayerPanel extends JPanel {
 		PromptSupport.setPrompt("Nome Giocatore", txtName);
 		pnlPlayer.add(txtName);
 
-
 		// Player lblPunteggio
 		lblPunteggioPlayer = new JLabel("0");
 		lblPunteggioPlayer.setBounds(5, 42, 160, 34);
@@ -80,40 +69,41 @@ public class PlayerPanel extends JPanel {
 		/*
 		 * Pulsanti di correzione punteggio '-1' e '-10'
 		 */
-		btnMenoUno = new JButton();
+		btnMenoUno = new JButton("-1");
 		btnMenoUno.setBounds(166, 44, 15, 15);
 		btnMenoUno.setMargin(new Insets(2, 2, 2, 2));
-		btnMenoUno.setFont(new Font("Dialog", Font.BOLD, 12));
-		btnMenoUno.setBorder(new EtchedBorder(EtchedBorder.RAISED,
-				null, null));
+		btnMenoUno.setFont(new Font("Dialog", Font.PLAIN, 7));
+		btnMenoUno.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		btnMenoUno.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//PlayerPanel mypanel = panelArray[pannello];
-				 int totale = Integer.parseInt(lblPunteggioPlayer.getText().toString())-1;
-				 lblPunteggioPlayer.setText(""+totale);			}
-			
+				// PlayerPanel mypanel = panelArray[pannello];
+				int totale = Integer.parseInt(lblPunteggioPlayer.getText()
+						.toString()) - 1;
+				lblPunteggioPlayer.setText("" + totale);
+			}
 		});
 		pnlPlayer.add(btnMenoUno);
-		
-		btnMenoDieci = new JButton();
+
+		btnMenoDieci = new JButton("-10");
 		btnMenoDieci.setBounds(166, 60, 15, 15);
 		btnMenoDieci.setMargin(new Insets(2, 2, 2, 2));
-		btnMenoDieci.setFont(new Font("Dialog", Font.BOLD, 12));
-		btnMenoDieci.setBorder(new EtchedBorder(EtchedBorder.RAISED,
-				null, null));
+		btnMenoDieci.setFont(new Font("Dialog", Font.PLAIN, 7));
+		btnMenoDieci
+				.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		btnMenoDieci.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//PlayerPanel mypanel = panelArray[pannello];
-				 int totale = Integer.parseInt(lblPunteggioPlayer.getText().toString())-10;
-				 lblPunteggioPlayer.setText(""+totale);			}
-			
+				// PlayerPanel mypanel = panelArray[pannello];
+				int totale = Integer.parseInt(lblPunteggioPlayer.getText()
+						.toString()) - 10;
+				lblPunteggioPlayer.setText("" + totale);
+			}
 		});
 		pnlPlayer.add(btnMenoDieci);
-		
+
 		// aggiungo le CompositeRow
 		int width = 180;
 		int height = 20;
@@ -123,7 +113,6 @@ public class PlayerPanel extends JPanel {
 			rowArray[i] = riga;
 			pnlPlayer.add(riga);
 		}
-
 	}
 
 }
