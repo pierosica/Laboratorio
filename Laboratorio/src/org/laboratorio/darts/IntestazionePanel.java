@@ -30,7 +30,6 @@ public class IntestazionePanel extends JPanel {
 		pnlIntestazione.setBorder(borderIntestazione);
 		pnlIntestazione.setBounds(0, 0, 500, 40);
 		pnlIntestazione.getLayout();
-		pnlIntestazione.setVisible(true);
 
 		JLabel lblNumeroGiocatori = new JLabel("Numero Giocatori");
 		pnlIntestazione.add(lblNumeroGiocatori);

@@ -67,6 +67,9 @@ public class CompositeRow extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (DartMain.lblGiocatoreTutteChiuse(idpannello)){
+					DartMain.calcolaPunteggio(idpannello);
+				}
 				if (pnlChiuso | pnlMorto) {
 					DartMain.incrementa(idpannello, idriga);
 				} else {
@@ -86,7 +89,9 @@ public class CompositeRow extends JPanel {
 									DartMain.cambiaColoreMorto(idpannello,
 											idriga);
 								}
-								DartMain.isAnyWinner();
+//								if (DartMain.lblGiocatoreTutteChiuse(idpannello)){
+//									DartMain.calcolaPunteggio(idpannello);
+//								}
 							}
 						}
 					}

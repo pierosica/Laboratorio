@@ -1,10 +1,13 @@
 package org.laboratorio.darts;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 public class DartMain extends JFrame {
 
@@ -121,17 +124,6 @@ public class DartMain extends JFrame {
 		return morto;
 	}
 
-	/*
-	 * TODO
-	 */
-	public static void isAnyWinner() {
-		int numeroRighe = 21;
-		for (int i = 0; i < numeroRighe; i++) {
-			//System.out.println(i);
-
-		}
-	}
-
 	public static boolean lblGiocatoreTutteChiuse(int pannello) {
 		boolean chiuso = true;
 		PlayerPanel panel = panelArray[pannello];
@@ -156,7 +148,10 @@ public class DartMain extends JFrame {
 			}
 		}
 		if (j == pannello){
-			
+			PlayerPanel panel = panelArray[pannello];
+			//panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 0, 0), null));
+			panel.setBackground(new Color(255,0,0));
+			panel.txtName.setText("winner");
 		}
 	}
 	
@@ -181,7 +176,7 @@ public class DartMain extends JFrame {
 	 * Create the frame.
 	 */
 	public DartMain() {
-		setResizable(false);
+		//setResizable(false);
 
 		// imposto la window del programma
 		setTitle("Darts");
