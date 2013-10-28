@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
-public class CompositeRow extends JPanel {
+public class CompositeRowWorkLayout extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	public boolean pnlChiuso;
@@ -27,7 +27,7 @@ public class CompositeRow extends JPanel {
 			null, null);
 
 	// metodo di creazione della CompositeRow
-	public CompositeRow(final int idpannello, final int idriga) {
+	public CompositeRowWorkLayout(final int idpannello, final int idriga) {
 		this.setLayout(null);
 
 		// creo le JLabel dei Numeri
@@ -67,6 +67,9 @@ public class CompositeRow extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (DartMain.lblGiocatoreTutteChiuse(idpannello)){
+					DartMain.calcolaPunteggio(idpannello);
+				}
 				if (pnlChiuso | pnlMorto) {
 					DartMain.incrementa(idpannello, idriga);
 				} else {
@@ -86,7 +89,9 @@ public class CompositeRow extends JPanel {
 									DartMain.cambiaColoreMorto(idpannello,
 											idriga);
 								}
-								DartMain.isNumeroMorto(idriga);
+//								if (DartMain.lblGiocatoreTutteChiuse(idpannello)){
+//									DartMain.calcolaPunteggio(idpannello);
+//								}
 							}
 						}
 					}
