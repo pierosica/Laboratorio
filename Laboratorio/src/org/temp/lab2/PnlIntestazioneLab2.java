@@ -14,6 +14,7 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.border.EtchedBorder;
 
 public class PnlIntestazioneLab2 extends JPanel {
 
@@ -25,7 +26,8 @@ public class PnlIntestazioneLab2 extends JPanel {
 	 * Create the panel.
 	 */
 	public PnlIntestazioneLab2() {
-		setBackground(new Color(0, 255, 0));
+		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		//setBackground(new Color(0, 255, 0));
 		setOpaque(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -90,7 +92,7 @@ public class PnlIntestazioneLab2 extends JPanel {
 
 		JButton btnCalcolaChiusura = new JButton("Calcola Chiusura");
 		GridBagConstraints gbc_btnCalcolaChiusura = new GridBagConstraints();
-		gbc_btnCalcolaChiusura.insets = new Insets(0, 0, 0, 5);
+		gbc_btnCalcolaChiusura.insets = new Insets(5, 5, 5, 5);
 		gbc_btnCalcolaChiusura.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCalcolaChiusura.gridx = 6;
 		gbc_btnCalcolaChiusura.gridy = 0;
@@ -104,7 +106,7 @@ public class PnlIntestazioneLab2 extends JPanel {
 				null, options, options[1]);
 		if (n == 0) {
 			selectedVal = getSelectedButtonVal(buttonGroup);
-			//DartMain.buildIt(selectedVal);
+			GuiLab2.buildIt(selectedVal);
 		} else if (n == 1) {
 			// usata se clikko Annulla
 		} else {
