@@ -1,4 +1,4 @@
-package org.temp.lab2;
+package org.laboratorio.dartsgbl;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;

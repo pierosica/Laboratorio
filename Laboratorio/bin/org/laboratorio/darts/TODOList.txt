@@ -1,3 +1,0 @@
-TODO list
-- migliorare leggibilità
-- - memorizzare i nomi dei giocatori quando si preme NuovaPartita

@@ -1,4 +1,4 @@
-package org.temp.lab2;
+package org.laboratorio.dartsgbl;
 
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
