@@ -36,11 +36,8 @@ public class GuiLab2 extends JFrame {
 		//System.out.println(numeroGiocatori);
 		
 		PnlBodyLab2 pnlBodyLab2 = new PnlBodyLab2(numeroGiocatori);
-		contentPane.remove(pnlBodyLab2);
-//		contentPane.revalidate();
-//		contentPane.repaint();
 		GridBagConstraints gbc_pnlBodyLab2 = new GridBagConstraints();
-		gbc_pnlBodyLab2.insets = new Insets(0, 5, 5, 5);
+		//gbc_pnlBodyLab2.insets = new Insets(0, 5, 5, 5);
 		gbc_pnlBodyLab2.fill = GridBagConstraints.BOTH;
 		gbc_pnlBodyLab2.gridx = 0;
 		gbc_pnlBodyLab2.gridy = 1;
