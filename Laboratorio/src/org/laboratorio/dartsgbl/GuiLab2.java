@@ -3,7 +3,6 @@ package org.laboratorio.dartsgbl;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.RepaintManager;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -35,11 +34,9 @@ public class GuiLab2 extends JFrame {
 	}
 
 	public static void buildIt(int numeroGiocatori) {
-		//System.out.println(numeroGiocatori);
-//		PnlBodyLab2 pnlBodyLab2 = new PnlBodyLab2(numeroGiocatori);
 		pnlBodyLab2 = new PnlBodyLab2(numeroGiocatori);
 		GridBagConstraints gbc_pnlBodyLab2 = new GridBagConstraints();
-		//gbc_pnlBodyLab2.insets = new Insets(0, 5, 5, 5);
+//		gbc_pnlBodyLab2.insets = new Insets(0, 5, 5, 5);
 		gbc_pnlBodyLab2.fill = GridBagConstraints.BOTH;
 		gbc_pnlBodyLab2.gridx = 0;
 		gbc_pnlBodyLab2.gridy = 1;
@@ -60,11 +57,9 @@ public class GuiLab2 extends JFrame {
 		setTitle("GuiLab2");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 600));
-
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
-
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{800, 0};
 		gbl_contentPane.rowHeights = new int[]{50, 0, 0};
@@ -73,7 +68,6 @@ public class GuiLab2 extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		PnlIntestazioneLab2 pnlIntestazioneLab2 = new PnlIntestazioneLab2();
 		GridBagConstraints gbc_pnlIntestazioneLab2 = new GridBagConstraints();
-		// gbc_pnlIntestazioneLab2.gridwidth = 2;
 		gbc_pnlIntestazioneLab2.insets = new Insets(5, 5, 5, 5);
 		gbc_pnlIntestazioneLab2.fill = GridBagConstraints.BOTH;
 		gbc_pnlIntestazioneLab2.gridx = 0;

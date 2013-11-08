@@ -14,9 +14,9 @@ public class PnlPlayerLab2 extends JPanel {
 	 */
 	private static final long serialVersionUID = -2648011732529825438L;
 	private static int NumeroRighe = 21;
-	private PnlCompositeRow riga;
+	private PnlCompositeRowLab2 riga;
 	public int IDpannello;
-	public PnlCompositeRow[] rowArray = new PnlCompositeRow[NumeroRighe];
+	public PnlCompositeRowLab2[] rowArray = new PnlCompositeRowLab2[NumeroRighe];
 
 	/**
 	 * Create the panel.
@@ -39,7 +39,7 @@ public class PnlPlayerLab2 extends JPanel {
 		setLayout(gridBagLayout);
 		
 		for (int i = 0; i < NumeroRighe; i++) {
-			riga = new PnlCompositeRow(this.IDpannello, i);
+			riga = new PnlCompositeRowLab2(this.IDpannello, i);
 			rowArray[i] = riga;
 			GridBagConstraints gbc_riga = new GridBagConstraints();
 			gbc_riga.fill = GridBagConstraints.BOTH;
