@@ -106,7 +106,9 @@ public class PnlIntestazioneLab2 extends JPanel {
 				null, options, options[1]);
 		if (n == 0) {
 			selectedVal = getSelectedButtonVal(buttonGroup);
+			GuiLab2.reBuildIt(selectedVal);
 			GuiLab2.buildIt(selectedVal);
+			
 		} else if (n == 1) {
 			// usata se clikko Annulla
 		} else {

@@ -3,6 +3,7 @@ package org.laboratorio.dartsgbl;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.RepaintManager;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -13,6 +14,7 @@ public class GuiLab2 extends JFrame {
 
 	private static final long serialVersionUID = 5375213009082631974L;
 	private static JPanel contentPane;
+	private static PnlBodyLab2 pnlBodyLab2;
 
 	/**
 	 * Launch the application.
@@ -34,16 +36,23 @@ public class GuiLab2 extends JFrame {
 
 	public static void buildIt(int numeroGiocatori) {
 		//System.out.println(numeroGiocatori);
-		
-		PnlBodyLab2 pnlBodyLab2 = new PnlBodyLab2(numeroGiocatori);
+//		PnlBodyLab2 pnlBodyLab2 = new PnlBodyLab2(numeroGiocatori);
+		pnlBodyLab2 = new PnlBodyLab2(numeroGiocatori);
 		GridBagConstraints gbc_pnlBodyLab2 = new GridBagConstraints();
 		//gbc_pnlBodyLab2.insets = new Insets(0, 5, 5, 5);
 		gbc_pnlBodyLab2.fill = GridBagConstraints.BOTH;
 		gbc_pnlBodyLab2.gridx = 0;
 		gbc_pnlBodyLab2.gridy = 1;
 		contentPane.add(pnlBodyLab2, gbc_pnlBodyLab2);
+		contentPane.revalidate();
+		contentPane.repaint();
 	}
 
+	public static void reBuildIt(int numeroGiocatori) {
+		contentPane.remove(pnlBodyLab2);
+		contentPane.repaint();
+	}
+	
 	/**
 	 * Create the frame.
 	 */

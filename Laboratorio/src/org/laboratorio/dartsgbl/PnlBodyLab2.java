@@ -3,6 +3,7 @@ package org.laboratorio.dartsgbl;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -18,6 +19,9 @@ public class PnlBodyLab2 extends JPanel {
 	 * Create the panel.
 	 */
 	public PnlBodyLab2(int numeroGiocatori) {
+		repaint();
+		setBackground(new Color(0, 0, 255));
+		setOpaque(true);
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 200, 200, 200, 200, 0 };
@@ -38,5 +42,7 @@ public class PnlBodyLab2 extends JPanel {
 			gbc_pnlPlayerLab2.gridy = 0;
 			add(pnlPlayer, gbc_pnlPlayerLab2);
 		}
+		revalidate();
+		repaint();
 	}
 }
