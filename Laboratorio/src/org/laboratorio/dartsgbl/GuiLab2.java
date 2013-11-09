@@ -14,6 +14,7 @@ public class GuiLab2 extends JFrame {
 	private static final long serialVersionUID = 5375213009082631974L;
 	private static JPanel contentPane;
 	private static PnlBodyLab2 pnlBodyLab2;
+	private static PnlIntestazioneLab2 pnlIntestazione; 
 
 	/**
 	 * Launch the application.
@@ -49,7 +50,7 @@ public class GuiLab2 extends JFrame {
 		contentPane.remove(pnlBodyLab2);
 		contentPane.repaint();
 	}
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -66,7 +67,8 @@ public class GuiLab2 extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		PnlIntestazioneLab2 pnlIntestazioneLab2 = new PnlIntestazioneLab2();
+
+		pnlIntestazione = new PnlIntestazioneLab2();
 		GridBagConstraints gbc_pnlIntestazioneLab2 = new GridBagConstraints();
 		gbc_pnlIntestazioneLab2.insets = new Insets(5, 5, 5, 5);
 		gbc_pnlIntestazioneLab2.fill = GridBagConstraints.BOTH;
@@ -74,7 +76,7 @@ public class GuiLab2 extends JFrame {
 		gbc_pnlIntestazioneLab2.gridy = 0;
 		gbc_pnlIntestazioneLab2.weightx = 0;
 		gbc_pnlIntestazioneLab2.weighty = 0;
-		contentPane.add(pnlIntestazioneLab2, gbc_pnlIntestazioneLab2);
+		contentPane.add(pnlIntestazione, gbc_pnlIntestazioneLab2);
 
 		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
 		buildIt(numeroGiocatori);

@@ -13,16 +13,15 @@ public class LblNumeroLab2 extends JLabel {
 	private Color grigio = new Color(230, 230, 230);
 	private Color rosso = new Color(255, 0, 0);
 	private Color blue = new Color(0, 0, 255);
-
 	private boolean lblPreso;
 	private boolean lblMorto;
-	
+
 	public boolean isPreso() {
 		return lblPreso;
 	}
 
 	public void setPreso(boolean preso) {
-		if (preso){
+		if (preso) {
 			this.lblPreso = preso;
 			this.setBackground(rosso);
 		} else {
@@ -31,11 +30,11 @@ public class LblNumeroLab2 extends JLabel {
 		}
 	}
 
-	public boolean isLblMorto() {
-		return lblMorto;
-	}
-
-	public void setLblMorto(boolean lblMorto) {
+//	public boolean isLblMorto() {
+//		return lblMorto;
+//	}
+//
+	public void setLblMorta(boolean lblMorto) {
 		this.lblMorto = lblMorto;
 		this.setBackground(blue);
 	}
@@ -43,5 +42,5 @@ public class LblNumeroLab2 extends JLabel {
 	public LblNumeroLab2() {
 		this.setBackground(grigio);
 		this.setOpaque(true);
-}
+	}
 }
