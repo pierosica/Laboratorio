@@ -18,23 +18,14 @@ public class PnlCompositeRowLab2 extends JPanel {
 	public LblNumeroLab2 lblNumeroA;
 	public LblNumeroLab2 lblNumeroB;
 	public LblNumeroLab2 lblNumeroC;
-	private static boolean rowChiusa;
-	private static boolean rowMorta;
+	private boolean rowChiusa;
 
 	public boolean isRowChiusa(int idpannello, int idriga) {
 		return rowChiusa;
 	}
 
-	public void setRowChiusa(boolean rowChiusa) {
-		PnlCompositeRowLab2.rowChiusa = rowChiusa;
-	}
-
-	public boolean isRowMorta(int idriga) {
-		return rowMorta;
-	}
-
-	public void setRowMorta(int idpannello, int idriga) {
-		// lblNumeroA.setLblMorto(true);
+	public void setRowChiusa(int idpannello, int idriga, boolean rowchiusa) {
+		rowChiusa = rowchiusa;
 	}
 
 	/**
@@ -45,7 +36,7 @@ public class PnlCompositeRowLab2 extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 45, 30, 30, 30, 20 };
 		gridBagLayout.rowHeights = new int[] { 3, 0 };
-		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 0.0,
+		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 0.0,
 				Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
@@ -93,29 +84,26 @@ public class PnlCompositeRowLab2 extends JPanel {
 
 				if (!lblNumeroA.isPreso()) {
 					lblNumeroA.setPreso(true);
-					rowChiusa = false;
-					rowMorta=PnlBodyLab2.isNumeroMorto(idriga);
+					setRowChiusa(idpannello, idriga, false);
 				} else {
 					if (!lblNumeroB.isPreso()) {
 						lblNumeroB.setPreso(true);
-						rowChiusa = false;
-						rowMorta=PnlBodyLab2.isNumeroMorto(idriga);
+						setRowChiusa(idpannello, idriga, false);
 					} else {
 						if (!lblNumeroC.isPreso()) {
 							lblNumeroC.setPreso(true);
-							rowChiusa = true;
-							rowMorta=PnlBodyLab2.isNumeroMorto(idriga);
+							setRowChiusa(idpannello, idriga, true);
 						}
 					}
 				}
 
-//				System.out.println("idpannello: " + idpannello);
-//				System.out.println("idrow; " + idriga);
-//				System.out.println("rowchiusa: " + rowChiusa);
-//				System.out.println("rowmorta: " + rowMorta);
-//				System.out.println("lblNumeroA presa:" + lblNumeroA.isPreso());
-//				System.out.println("lblNumeroB presa:" + lblNumeroB.isPreso());
-//				System.out.println("lblNumeroC presa:" + lblNumeroC.isPreso());
+				System.out.println(" ");
+				System.out.println("idpannello: " + idpannello);
+				System.out.println("idrow: " + idriga);
+				System.out.println("rowchiusa: " + idpannello + idriga + rowChiusa);
+				System.out.println("lblNumeroA presa:" + lblNumeroA.isPreso());
+				System.out.println("lblNumeroB presa:" + lblNumeroB.isPreso());
+				System.out.println("lblNumeroC presa:" + lblNumeroC.isPreso());
 
 			}
 		});

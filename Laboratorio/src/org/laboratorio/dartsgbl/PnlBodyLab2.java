@@ -17,40 +17,6 @@ public class PnlBodyLab2 extends JPanel {
 	private static PnlPlayerLab2[] pnlPlayerArray;
 	private static JTextField[] txtNomeArray;
 	private static JTextField[] txtPuntiArray;
-	private static boolean[] mortoArray;
-
-	public static void setNumeroMorto(int pannello, int riga) {
-		mortoArray[riga] = true;
-		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
-		for (int i = 0; i < numeroGiocatori; i++) {
-			PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
-			PnlCompositeRowLab2 otherrow = otherpanel.rowArray[riga];
-			LblNumeroLab2 lblNumeroA = otherrow.lblNumeroA;
-			lblNumeroA.setLblMorta(true);
-			LblNumeroLab2 lblNumeroB = otherrow.lblNumeroB;
-			lblNumeroB.setLblMorta(true);
-			LblNumeroLab2 lblNumeroC = otherrow.lblNumeroC;
-			lblNumeroC.setLblMorta(true);
-		}
-	}
-
-	public static boolean isNumeroMorto(int riga) {
-		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
-		boolean morto = true;
-		for (int i = 0; i < numeroGiocatori; i++) {
-			PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
-			PnlCompositeRowLab2 otherrow = otherpanel.rowArray[riga];
-			morto = morto & otherrow.isRowChiusa(i, riga);
-			System.out.println("pannello: " + i);
-			System.out.println("riga: " + riga);
-			System.out.println("isRowChiusa: " + otherrow.isRowChiusa(i, riga));
-			System.out.println("isRowMorta: " + otherrow.isRowMorta(riga));
-			
-		}
-		System.out.println("isNumeroMorto: " + morto);
-		return morto;
-
-	}
 
 	/**
 	 * Create the panel.
@@ -73,17 +39,8 @@ public class PnlBodyLab2 extends JPanel {
 		setLayout(gridBagLayout);
 
 		for (int i = 0; i < numeroGiocatori; i++) {
-			pnlPlayer = new PnlPlayerLab2(i);
-			pnlPlayerArray[i] = pnlPlayer;
-			GridBagConstraints gbc_pnlPlayerLab2 = new GridBagConstraints();
-			gbc_pnlPlayerLab2.insets = new Insets(0, 5, 0, 5);
-			gbc_pnlPlayerLab2.fill = GridBagConstraints.BOTH;
-			gbc_pnlPlayerLab2.gridx = i;
-			gbc_pnlPlayerLab2.gridy = 2;
-			add(pnlPlayer, gbc_pnlPlayerLab2);
-
 			txtPlayerName = new JTextField(i);
-			txtPlayerName.setText("Nome Giocatore" + i);
+			txtPlayerName.setText("Nome Giocatore: " + i);
 			txtNomeArray[i] = txtPlayerName;
 			GridBagConstraints gbc_txtPlayerName = new GridBagConstraints();
 			gbc_txtPlayerName.insets = new Insets(0, 5, 0, 5);
@@ -93,7 +50,7 @@ public class PnlBodyLab2 extends JPanel {
 			add(txtPlayerName, gbc_txtPlayerName);
 
 			txtPlayerPunti = new JTextField(i);
-			txtPlayerPunti.setText("Punteggio" + i);
+			txtPlayerPunti.setText("Punteggio: " + i);
 			txtPuntiArray[i] = txtPlayerPunti;
 			GridBagConstraints gbc_txtNewLabel = new GridBagConstraints();
 			gbc_txtNewLabel.insets = new Insets(0, 5, 0, 5);
@@ -101,7 +58,17 @@ public class PnlBodyLab2 extends JPanel {
 			gbc_txtNewLabel.gridx = i;
 			gbc_txtNewLabel.gridy = 1;
 			add(txtPlayerPunti, gbc_txtNewLabel);
+			
+			pnlPlayer = new PnlPlayerLab2(i);
+			pnlPlayerArray[i] = pnlPlayer;
+			GridBagConstraints gbc_pnlPlayerLab2 = new GridBagConstraints();
+			gbc_pnlPlayerLab2.insets = new Insets(5, 5, 5, 5);
+			gbc_pnlPlayerLab2.fill = GridBagConstraints.BOTH;
+			gbc_pnlPlayerLab2.gridx = i;
+			gbc_pnlPlayerLab2.gridy = 2;
+			add(pnlPlayer, gbc_pnlPlayerLab2);
 		}
+
 		setBackground(new Color(0, 0, 255));
 		setOpaque(true);
 		revalidate();
