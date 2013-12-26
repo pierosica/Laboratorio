@@ -10,13 +10,46 @@ import java.awt.Insets;
 
 public class PnlBodyLab2 extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6866172652472739639L;
 	private static PnlPlayerLab2[] pnlPlayerArray;
 	private static JTextField[] txtNomeArray;
 	private static JTextField[] txtPuntiArray;
+	private static boolean[] mortoArray;
+
+	public static boolean isNumeroMorto(int riga) {
+//		System.out.println("isNumeroMorto: " + mortoArray[riga]);
+		return mortoArray[riga];
+	}
+
+	public static boolean controllaSeDaSettareNumeroMorto (int riga) {
+		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
+		boolean morto = true;
+		for (int i = 0; i < numeroGiocatori; i++) {
+			PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
+			PnlCompositeRowLab2 otherrow = otherpanel.rowArray[riga];
+			morto = morto & otherrow.isRowChiusa(i, riga);
+		}
+//		System.out.println("controllaSeDaSettareNumeroMorto: " + morto);
+		return morto;
+	}
+
+	public static void setNumeroMorto (int riga) {
+		mortoArray[riga] = true;
+//		System.out.println(mortoArray[riga]);
+		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
+		for (int i = 0; i < numeroGiocatori; i++) {
+			PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
+			PnlCompositeRowLab2 otherrow = otherpanel.rowArray[riga];
+			LblNumeroLab2 lblNumeroA = otherrow.lblNumeroA;
+			lblNumeroA.setMorto(true);
+			LblNumeroLab2 lblNumeroB = otherrow.lblNumeroB;
+			lblNumeroB.setMorto(true);
+			LblNumeroLab2 lblNumeroC = otherrow.lblNumeroC;
+			lblNumeroC.setMorto(true);
+		}
+		//System.out.println(mortoArray[riga]);
+
+	}
 
 	/**
 	 * Create the panel.
@@ -25,6 +58,7 @@ public class PnlBodyLab2 extends JPanel {
 		pnlPlayerArray = new PnlPlayerLab2[numeroGiocatori];
 		txtNomeArray = new JTextField[numeroGiocatori];
 		txtPuntiArray = new JTextField[numeroGiocatori];
+		mortoArray = new boolean[21];
 		PnlPlayerLab2 pnlPlayer;
 		JTextField txtPlayerName;
 		JTextField txtPlayerPunti;
@@ -32,9 +66,11 @@ public class PnlBodyLab2 extends JPanel {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 200, 200, 200, 200, 0 };
+		// gridBagLayout.columnWidths = new int[] { 0 };
 		gridBagLayout.rowHeights = new int[] { 30, 45, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0,
 				Double.MIN_VALUE };
+		// gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0 };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
@@ -58,7 +94,7 @@ public class PnlBodyLab2 extends JPanel {
 			gbc_txtNewLabel.gridx = i;
 			gbc_txtNewLabel.gridy = 1;
 			add(txtPlayerPunti, gbc_txtNewLabel);
-			
+
 			pnlPlayer = new PnlPlayerLab2(i);
 			pnlPlayerArray[i] = pnlPlayer;
 			GridBagConstraints gbc_pnlPlayerLab2 = new GridBagConstraints();

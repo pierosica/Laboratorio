@@ -19,12 +19,13 @@ public class PnlCompositeRowLab2 extends JPanel {
 	public LblNumeroLab2 lblNumeroB;
 	public LblNumeroLab2 lblNumeroC;
 	private boolean rowChiusa;
+	private boolean rowMorta;
 
 	public boolean isRowChiusa(int idpannello, int idriga) {
 		return rowChiusa;
 	}
 
-	public void setRowChiusa(int idpannello, int idriga, boolean rowchiusa) {
+	private void setRowChiusa(int idpannello, int idriga, boolean rowchiusa) {
 		rowChiusa = rowchiusa;
 	}
 
@@ -81,6 +82,62 @@ public class PnlCompositeRowLab2 extends JPanel {
 		btnPreso.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (PnlBodyLab2.isNumeroMorto(idriga) | isRowChiusa(idpannello, idriga)) {
+					System.out.println("e' morto? " + PnlBodyLab2.isNumeroMorto(idriga));
+					System.out.println("e' chiuso? " + isRowChiusa(idpannello, idriga));
+				} else {
+					if (!lblNumeroA.isPreso()) {
+						lblNumeroA.setPreso(true);
+						setRowChiusa(idpannello, idriga, false);
+					} else {
+						if (!lblNumeroB.isPreso()) {
+							lblNumeroB.setPreso(true);
+							setRowChiusa(idpannello, idriga, false);
+						} else {
+							if (!lblNumeroC.isPreso()) {
+								lblNumeroC.setPreso(true);
+								setRowChiusa(idpannello, idriga, true);
+								rowMorta = PnlBodyLab2.controllaSeDaSettareNumeroMorto(idriga);
+								if (rowMorta) {
+									PnlBodyLab2.setNumeroMorto(idriga);
+								}
+							}
+						}
+					}
+				}
+
+				/**
+				 * print della situazione label e riga restituite dalla
+				 * pressione del btnPresa
+				 */
+//				System.out.println(" ");
+//				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
+//				System.out.println("E' stato premuto:  ");
+//				System.out.println("idpannello: " + idpannello);
+//				System.out.println("idrow: " + idriga);
+//				System.out.println("rowchiusa: " + rowChiusa);
+//				System.out.println("rowmorta: " + rowMorta);
+//				System.out.println("lblNumeroA presa:" + lblNumeroA.isPreso());
+//				System.out.println("lblNumeroB presa:" + lblNumeroB.isPreso());
+//				System.out.println("lblNumeroC presa:" + lblNumeroC.isPreso());
+//				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
+//				System.out.println(" ");
+			}
+		});
+		add(btnPreso, gbc_btnNewButton);
+
+		JButton btnTogli = new JButton("");
+		btnTogli.setMaximumSize(new Dimension(10, 10));
+		btnTogli.setMinimumSize(new Dimension(10, 10));
+		btnTogli.setPreferredSize(new Dimension(10, 10));
+		GridBagConstraints gbc_btnTogli = new GridBagConstraints();
+		gbc_btnTogli.fill = GridBagConstraints.NONE;
+		gbc_btnTogli.insets = internalPadding;
+		gbc_btnTogli.gridx = 5;
+		gbc_btnTogli.gridy = 0;
+		btnTogli.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
 				if (!lblNumeroA.isPreso()) {
 					lblNumeroA.setPreso(true);
@@ -97,27 +154,23 @@ public class PnlCompositeRowLab2 extends JPanel {
 					}
 				}
 
+				/**
+				 * print della situazione label e riga restituite dalla
+				 * pressione del btnPresa
+				 */
 				System.out.println(" ");
+				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
+				System.out.println("E' stato premuto:  ");
 				System.out.println("idpannello: " + idpannello);
 				System.out.println("idrow: " + idriga);
-				System.out.println("rowchiusa: " + idpannello + idriga + rowChiusa);
+				System.out.println("rowchiusa: " + rowChiusa);
 				System.out.println("lblNumeroA presa:" + lblNumeroA.isPreso());
 				System.out.println("lblNumeroB presa:" + lblNumeroB.isPreso());
 				System.out.println("lblNumeroC presa:" + lblNumeroC.isPreso());
-
+				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
+				System.out.println(" ");
 			}
 		});
-		add(btnPreso, gbc_btnNewButton);
-
-		JButton btnTogli = new JButton("");
-		btnTogli.setMaximumSize(new Dimension(10, 10));
-		btnTogli.setMinimumSize(new Dimension(10, 10));
-		btnTogli.setPreferredSize(new Dimension(10, 10));
-		GridBagConstraints gbc_btnTogli = new GridBagConstraints();
-		gbc_btnTogli.fill = GridBagConstraints.NONE;
-		gbc_btnTogli.insets = internalPadding;
-		gbc_btnTogli.gridx = 5;
-		gbc_btnTogli.gridy = 0;
 		add(btnTogli, gbc_btnTogli);
 	}
 }
