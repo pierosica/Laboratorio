@@ -17,11 +17,10 @@ public class PnlBodyLab2 extends JPanel {
 	private static boolean[] mortoArray;
 
 	public static boolean isNumeroMorto(int riga) {
-//		System.out.println("isNumeroMorto: " + mortoArray[riga]);
 		return mortoArray[riga];
 	}
-	
-	public static void setNumeroNonMorto (int riga) {
+
+	public static void setNumeroNonMorto(int riga) {
 		mortoArray[riga] = false;
 		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
 		for (int i = 0; i < numeroGiocatori; i++) {
@@ -36,7 +35,7 @@ public class PnlBodyLab2 extends JPanel {
 		}
 	}
 
-	public static boolean controllaSeDaSettareNumeroMorto (int riga) {
+	public static boolean controllaSeDaSettareNumeroMorto(int riga) {
 		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
 		boolean morto = true;
 		for (int i = 0; i < numeroGiocatori; i++) {
@@ -44,13 +43,11 @@ public class PnlBodyLab2 extends JPanel {
 			PnlCompositeRowLab2 otherrow = otherpanel.rowArray[riga];
 			morto = morto & otherrow.isRowChiusa(i, riga);
 		}
-//		System.out.println("controllaSeDaSettareNumeroMorto: " + morto);
 		return morto;
 	}
 
-	public static void setNumeroMorto (int riga) {
+	public static void setNumeroMorto(int riga) {
 		mortoArray[riga] = true;
-//		System.out.println(mortoArray[riga]);
 		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
 		for (int i = 0; i < numeroGiocatori; i++) {
 			PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
@@ -62,13 +59,35 @@ public class PnlBodyLab2 extends JPanel {
 			LblNumeroLab2 lblNumeroC = otherrow.lblNumeroC;
 			lblNumeroC.setMorto(true);
 		}
-		//System.out.println(mortoArray[riga]);
-
 	}
 
-	/**
-	 * Create the panel.
-	 */
+	public static void incrementa(int pannello, int riga) {
+		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
+		int delta = 1;
+		if (riga == 20) {
+			delta = 5;
+		}
+		if (isNumeroMorto(riga)) {
+			JTextField mieiPunti = txtPuntiArray[pannello];
+			int totale = Integer.parseInt(mieiPunti.getText().toString())
+					+ riga + delta;
+			mieiPunti.setText("" + totale);
+		} else {
+			for (int i = 0; i < numeroGiocatori; i++) {
+				PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
+				PnlCompositeRowLab2 otherrow = otherpanel.rowArray[riga];
+				if (i != pannello) {
+					if (!otherrow.isRowChiusa(pannello, riga)) {
+						JTextField otherPunti = txtPuntiArray[i];
+						int totale = Integer.parseInt(otherPunti.getText()
+								.toString()) + riga + delta;
+						otherPunti.setText("" + totale);
+					}
+				}
+			}
+		}
+	}
+
 	public PnlBodyLab2(int numeroGiocatori) {
 		pnlPlayerArray = new PnlPlayerLab2[numeroGiocatori];
 		txtNomeArray = new JTextField[numeroGiocatori];
@@ -101,7 +120,7 @@ public class PnlBodyLab2 extends JPanel {
 			add(txtPlayerName, gbc_txtPlayerName);
 
 			txtPlayerPunti = new JTextField(i);
-			txtPlayerPunti.setText("Punteggio: " + i);
+			txtPlayerPunti.setText("0");
 			txtPuntiArray[i] = txtPlayerPunti;
 			GridBagConstraints gbc_txtNewLabel = new GridBagConstraints();
 			gbc_txtNewLabel.insets = new Insets(0, 5, 0, 5);

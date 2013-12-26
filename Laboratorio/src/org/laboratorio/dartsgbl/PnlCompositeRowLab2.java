@@ -82,9 +82,8 @@ public class PnlCompositeRowLab2 extends JPanel {
 		btnPreso.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (PnlBodyLab2.isNumeroMorto(idriga) | isRowChiusa(idpannello, idriga)) {
-					System.out.println("e' morto? " + PnlBodyLab2.isNumeroMorto(idriga));
-					System.out.println("e' chiuso? " + isRowChiusa(idpannello, idriga));
+				if (PnlBodyLab2.isNumeroMorto(idriga) || isRowChiusa(idpannello, idriga)) {
+					PnlBodyLab2.incrementa(idpannello, idriga);
 				} else {
 					if (!lblNumeroA.isPreso()) {
 						lblNumeroA.setPreso(true);
@@ -105,23 +104,6 @@ public class PnlCompositeRowLab2 extends JPanel {
 						}
 					}
 				}
-
-				/**
-				 * print della situazione label e riga restituite dalla
-				 * pressione del btnPresa
-				 */
-//				System.out.println(" ");
-//				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
-//				System.out.println("E' stato premuto:  ");
-//				System.out.println("idpannello: " + idpannello);
-//				System.out.println("idrow: " + idriga);
-//				System.out.println("rowchiusa: " + rowChiusa);
-//				System.out.println("rowmorta: " + rowMorta);
-//				System.out.println("lblNumeroA presa:" + lblNumeroA.isPreso());
-//				System.out.println("lblNumeroB presa:" + lblNumeroB.isPreso());
-//				System.out.println("lblNumeroC presa:" + lblNumeroC.isPreso());
-//				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
-//				System.out.println(" ");
 			}
 		});
 		add(btnPreso, gbc_btnNewButton);
@@ -167,22 +149,6 @@ public class PnlCompositeRowLab2 extends JPanel {
 						}
 					}
 				}
-				
-				/**
-				 * print della situazione label e riga restituite dalla
-				 * pressione del btnPresa
-				 */
-				System.out.println(" ");
-				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
-				System.out.println("E' stato premuto:  ");
-				System.out.println("idpannello: " + idpannello);
-				System.out.println("idrow: " + idriga);
-				System.out.println("rowchiusa: " + rowChiusa);
-				System.out.println("lblNumeroA presa:" + lblNumeroA.isPreso());
-				System.out.println("lblNumeroB presa:" + lblNumeroB.isPreso());
-				System.out.println("lblNumeroC presa:" + lblNumeroC.isPreso());
-				System.out.println(" -_-_-_-_-_-_-_-_-_-_-");
-				System.out.println(" ");
 			}
 		});
 		add(btnTogli, gbc_btnTogli);
