@@ -20,6 +20,21 @@ public class PnlBodyLab2 extends JPanel {
 //		System.out.println("isNumeroMorto: " + mortoArray[riga]);
 		return mortoArray[riga];
 	}
+	
+	public static void setNumeroNonMorto (int riga) {
+		mortoArray[riga] = false;
+		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
+		for (int i = 0; i < numeroGiocatori; i++) {
+			PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
+			PnlCompositeRowLab2 otherrow = otherpanel.rowArray[riga];
+			LblNumeroLab2 lblNumeroA = otherrow.lblNumeroA;
+			lblNumeroA.setMorto(false);
+			LblNumeroLab2 lblNumeroB = otherrow.lblNumeroB;
+			lblNumeroB.setMorto(false);
+			LblNumeroLab2 lblNumeroC = otherrow.lblNumeroC;
+			lblNumeroC.setMorto(false);
+		}
+	}
 
 	public static boolean controllaSeDaSettareNumeroMorto (int riga) {
 		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();

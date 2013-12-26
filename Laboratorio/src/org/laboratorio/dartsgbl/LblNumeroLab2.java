@@ -26,11 +26,12 @@ public class LblNumeroLab2 extends JLabel {
 			this.lblPreso = preso;
 			this.color = rosso;
 			this.setBackground(color);
+//			this.setOpaque(true);
 		} else {
 			this.lblPreso = preso;
 			this.color = grigio;
 			this.setBackground(color);
-			this.setOpaque(true);
+//			this.setOpaque(true);
 		}
 	}
 
@@ -39,11 +40,14 @@ public class LblNumeroLab2 extends JLabel {
 	}
 
 	public void setMorto(boolean morto) {
-		this.lblMorto  = morto;
-		this.color = blue;
-		this.setBackground(color);
-		this.setOpaque(true);
-		
+		if (morto) {
+			this.lblMorto  = morto;
+			this.color = blue;
+			this.setBackground(color);
+//			this.setOpaque(true);
+		} else {
+			setPreso(true);
+		}
 	}
 
 	public LblNumeroLab2() {

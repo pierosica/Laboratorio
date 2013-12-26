@@ -138,22 +138,36 @@ public class PnlCompositeRowLab2 extends JPanel {
 		btnTogli.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				if(PnlBodyLab2.isNumeroMorto(idriga)) {
+					System.out.println("isNumeroMorto: " + PnlBodyLab2.isNumeroMorto(idriga));
+					PnlBodyLab2.setNumeroNonMorto(idriga);
+					setRowChiusa(idpannello, idriga, false);
+					System.out.println("isNumeroMorto: " + PnlBodyLab2.isNumeroMorto(idriga));
+				}
+				
+				if (isRowChiusa(idpannello, idriga)){
+					System.out.println("isRowChiusa: " + isRowChiusa(idpannello, idriga));
+					setRowChiusa(idpannello, idriga, false);
+					System.out.println("isRowChiusa: " + isRowChiusa(idpannello, idriga));
+				}
 
-				if (!lblNumeroA.isPreso()) {
-					lblNumeroA.setPreso(true);
+				if (lblNumeroC.isPreso() & lblNumeroB.isPreso()
+						& lblNumeroA.isPreso()) {
+					lblNumeroC.setPreso(false);
 					setRowChiusa(idpannello, idriga, false);
 				} else {
-					if (!lblNumeroB.isPreso()) {
-						lblNumeroB.setPreso(true);
+					if (lblNumeroB.isPreso() & lblNumeroA.isPreso()) {
+						lblNumeroB.setPreso(false);
 						setRowChiusa(idpannello, idriga, false);
 					} else {
-						if (!lblNumeroC.isPreso()) {
-							lblNumeroC.setPreso(true);
-							setRowChiusa(idpannello, idriga, true);
+						if (lblNumeroA.isPreso()) {
+							lblNumeroA.setPreso(false);
+							setRowChiusa(idpannello, idriga, false);
 						}
 					}
 				}
-
+				
 				/**
 				 * print della situazione label e riga restituite dalla
 				 * pressione del btnPresa
