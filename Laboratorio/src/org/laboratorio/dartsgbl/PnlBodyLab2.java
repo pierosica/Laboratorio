@@ -88,6 +88,54 @@ public class PnlBodyLab2 extends JPanel {
 		}
 	}
 
+	public static void calcolaChiusura() {
+		int numeroGiocatori = PnlIntestazioneLab2.getSelectedVal();
+		int numeroRighe = PnlPlayerLab2.NumeroRighe;
+		for (int i = 0; i < numeroGiocatori; i++) {
+			PnlPlayerLab2 otherpanel = pnlPlayerArray[i];
+			JTextField mieiPunti = txtPuntiArray[i];
+			int totale = Integer.parseInt(mieiPunti.getText().toString());
+			int delta = 1;
+			System.out
+					.println("calcolaChiusura - for (int i = 0; i < numeroGiocatori; i++) - totale: "
+							+ totale);
+
+			for (int j = 0; j < numeroRighe; j++) {
+				PnlCompositeRowLab2 otherrow = otherpanel.rowArray[j];
+				if (j == 20) {
+					delta = 5;
+				}
+				System.out.println("giocatore: " + i);
+				System.out.println("riga: " + j);
+				System.out.println("delta: " + delta);
+
+				if (!otherrow.lblNumeroC.isPreso()
+						& !otherrow.lblNumeroB.isPreso()
+						& !otherrow.lblNumeroA.isPreso()) {
+					totale = totale + ((j + delta) * 3);
+					System.out.println("tutti apert - riga: " + j + " vale: " + ((j + delta) * 3));
+				}
+				if (!otherrow.lblNumeroC.isPreso()
+						& !otherrow.lblNumeroB.isPreso()
+						& otherrow.lblNumeroA.isPreso()) {
+					totale = totale + ((j + delta) * 2);
+					System.out.println("due aperti - riga: " + j + " vale: "
+							+ ((j + delta) * 2));
+				}
+				if (!otherrow.lblNumeroC.isPreso()
+						& otherrow.lblNumeroB.isPreso()
+						& otherrow.lblNumeroA.isPreso()) {
+					totale = totale + ((j + delta) * 1);
+					System.out.println("uno aperto - riga: " + j + " vale: "
+							+ ((j + delta) * 1));
+				}
+			}
+			System.out.println("totale: " + totale );
+			int risultato = totale;
+			mieiPunti.setText("" + risultato);
+		}
+	}
+
 	public PnlBodyLab2(int numeroGiocatori) {
 		pnlPlayerArray = new PnlPlayerLab2[numeroGiocatori];
 		txtNomeArray = new JTextField[numeroGiocatori];

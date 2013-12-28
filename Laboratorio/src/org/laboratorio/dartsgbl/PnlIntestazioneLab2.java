@@ -82,10 +82,7 @@ public class PnlIntestazioneLab2 extends JPanel {
 		btnNuovaPartita.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// selectedVal = getSelectedButtonVal(buttonGroup);
-				// conferma.setVisible(true);
 				jOptionPanelConferma();
-				// DartMain.buildIt(selectedVal);
 			}
 		});
 		add(btnNuovaPartita, gbc_btnNuovaPartita);
@@ -96,6 +93,13 @@ public class PnlIntestazioneLab2 extends JPanel {
 		gbc_btnCalcolaChiusura.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCalcolaChiusura.gridx = 6;
 		gbc_btnCalcolaChiusura.gridy = 0;
+		btnCalcolaChiusura.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				PnlBodyLab2.calcolaChiusura();
+			}
+		});
 		add(btnCalcolaChiusura, gbc_btnCalcolaChiusura);
 	}
 

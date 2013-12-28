@@ -13,7 +13,7 @@ public class PnlPlayerLab2 extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -2648011732529825438L;
-	private static int NumeroRighe = 21;
+	public static int NumeroRighe = 21;
 	private PnlCompositeRowLab2 riga;
 	public int IDpannello;
 	public PnlCompositeRowLab2[] rowArray = new PnlCompositeRowLab2[NumeroRighe];

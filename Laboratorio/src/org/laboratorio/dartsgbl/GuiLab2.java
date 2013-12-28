@@ -13,7 +13,6 @@ public class GuiLab2 extends JFrame {
 
 	private static final long serialVersionUID = 5375213009082631974L;
 	private static JPanel contentPane;
-
 	private static PnlBodyLab2 pnlBodyLab2;
 	private static PnlIntestazioneLab2 pnlIntestazione; 
 
